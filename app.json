@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "myfinnhubapp",
-    "slug": "myfinnhubapp",
+    "name": "finnhubstockalert",
+    "slug": "finnhubstockalert",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,11 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "ee18e916-5448-495c-b853-24304c79ae74"
+      }
     }
   }
 }
