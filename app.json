@@ -33,6 +33,10 @@
       "eas": {
         "projectId": "ee18e916-5448-495c-b853-24304c79ae74"
       }
-    }
+    },
+      "plugins": [
+      "./plugins/with-kotlin-fix",
+      "expo-notifications"
+    ]
   }
 }
