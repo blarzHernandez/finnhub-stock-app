@@ -7,26 +7,26 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0F9BB11E4C29B2F2CB571BDA /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 8C06DA6ECE06467164246286 /* PrivacyInfo.xcprivacy */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
+		1D5ABFE5A6B773D4BF21B695 /* libPods-finnhubstockalert.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 31622F7EC87BE91D9F3840A8 /* libPods-finnhubstockalert.a */; };
 		3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */; };
-		474F375D1FCEEB8ABBA6E53F /* libPods-finnhubstockalert.a in Frameworks */ = {isa = PBXBuildFile; fileRef = C2C323B917E88A50175ED4DC /* libPods-finnhubstockalert.a */; };
-		4E7E52136253E664282E5751 /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = E9C852248BEB98DCA53CD683 /* PrivacyInfo.xcprivacy */; };
+		B24AE336B1426D96132C5A2B /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5D089123C458B2FE129C0265 /* ExpoModulesProvider.swift */; };
 		BB2F792D24A3F905000567C9 /* Expo.plist in Resources */ = {isa = PBXBuildFile; fileRef = BB2F792C24A3F905000567C9 /* Expo.plist */; };
 		F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F11748412D0307B40044C1D9 /* AppDelegate.swift */; };
-		F847F48742F5BBD88B2BB2A7 /* ExpoModulesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43C9A9534B222196D26FC736 /* ExpoModulesProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0700AE3EB7C1CB625D443CCA /* Pods-finnhubstockalert.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finnhubstockalert.debug.xcconfig"; path = "Target Support Files/Pods-finnhubstockalert/Pods-finnhubstockalert.debug.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* finnhubstockalert.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = finnhubstockalert.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = finnhubstockalert/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = finnhubstockalert/Info.plist; sourceTree = "<group>"; };
-		43C9A9534B222196D26FC736 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-finnhubstockalert/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
-		68CBF8A3C010FC5396469E0A /* Pods-finnhubstockalert.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finnhubstockalert.release.xcconfig"; path = "Target Support Files/Pods-finnhubstockalert/Pods-finnhubstockalert.release.xcconfig"; sourceTree = "<group>"; };
-		A4B2AC5C1C3FACDA745D8AD8 /* Pods-finnhubstockalert.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finnhubstockalert.debug.xcconfig"; path = "Target Support Files/Pods-finnhubstockalert/Pods-finnhubstockalert.debug.xcconfig"; sourceTree = "<group>"; };
+		31622F7EC87BE91D9F3840A8 /* libPods-finnhubstockalert.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-finnhubstockalert.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3FD82FB35B06E1347FE3FD54 /* Pods-finnhubstockalert.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-finnhubstockalert.release.xcconfig"; path = "Target Support Files/Pods-finnhubstockalert/Pods-finnhubstockalert.release.xcconfig"; sourceTree = "<group>"; };
+		5D089123C458B2FE129C0265 /* ExpoModulesProvider.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ExpoModulesProvider.swift; path = "Pods/Target Support Files/Pods-finnhubstockalert/ExpoModulesProvider.swift"; sourceTree = "<group>"; };
+		8C06DA6ECE06467164246286 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = finnhubstockalert/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = SplashScreen.storyboard; path = finnhubstockalert/SplashScreen.storyboard; sourceTree = "<group>"; };
 		BB2F792C24A3F905000567C9 /* Expo.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Expo.plist; sourceTree = "<group>"; };
-		C2C323B917E88A50175ED4DC /* libPods-finnhubstockalert.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-finnhubstockalert.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E9C852248BEB98DCA53CD683 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; name = PrivacyInfo.xcprivacy; path = finnhubstockalert/PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F11748412D0307B40044C1D9 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = finnhubstockalert/AppDelegate.swift; sourceTree = "<group>"; };
 		F11748442D0722820044C1D9 /* finnhubstockalert-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "finnhubstockalert-Bridging-Header.h"; path = "finnhubstockalert/finnhubstockalert-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -37,17 +37,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				474F375D1FCEEB8ABBA6E53F /* libPods-finnhubstockalert.a in Frameworks */,
+				1D5ABFE5A6B773D4BF21B695 /* libPods-finnhubstockalert.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0C93D83EC5AE014E488CDA76 /* ExpoModulesProviders */ = {
+		11C67A3405DB6C73D100490B /* ExpoModulesProviders */ = {
 			isa = PBXGroup;
 			children = (
-				7071A8F74968B7AB26FA9AD3 /* finnhubstockalert */,
+				BFDE72C3E441FCF0EC1579D1 /* finnhubstockalert */,
 			);
 			name = ExpoModulesProviders;
 			sourceTree = "<group>";
@@ -61,7 +61,7 @@
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				AA286B85B6C04FC6940260E9 /* SplashScreen.storyboard */,
-				E9C852248BEB98DCA53CD683 /* PrivacyInfo.xcprivacy */,
+				8C06DA6ECE06467164246286 /* PrivacyInfo.xcprivacy */,
 			);
 			name = finnhubstockalert;
 			sourceTree = "<group>";
@@ -70,17 +70,9 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				C2C323B917E88A50175ED4DC /* libPods-finnhubstockalert.a */,
+				31622F7EC87BE91D9F3840A8 /* libPods-finnhubstockalert.a */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		7071A8F74968B7AB26FA9AD3 /* finnhubstockalert */ = {
-			isa = PBXGroup;
-			children = (
-				43C9A9534B222196D26FC736 /* ExpoModulesProvider.swift */,
-			);
-			name = finnhubstockalert;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -97,8 +89,8 @@
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				872A17F295059E50A84C1DF2 /* Pods */,
-				0C93D83EC5AE014E488CDA76 /* ExpoModulesProviders */,
+				8B43794622C04E3A631EB1B8 /* Pods */,
+				11C67A3405DB6C73D100490B /* ExpoModulesProviders */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -113,11 +105,11 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		872A17F295059E50A84C1DF2 /* Pods */ = {
+		8B43794622C04E3A631EB1B8 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				A4B2AC5C1C3FACDA745D8AD8 /* Pods-finnhubstockalert.debug.xcconfig */,
-				68CBF8A3C010FC5396469E0A /* Pods-finnhubstockalert.release.xcconfig */,
+				0700AE3EB7C1CB625D443CCA /* Pods-finnhubstockalert.debug.xcconfig */,
+				3FD82FB35B06E1347FE3FD54 /* Pods-finnhubstockalert.release.xcconfig */,
 			);
 			name = Pods;
 			path = Pods;
@@ -132,6 +124,14 @@
 			path = finnhubstockalert/Supporting;
 			sourceTree = "<group>";
 		};
+		BFDE72C3E441FCF0EC1579D1 /* finnhubstockalert */ = {
+			isa = PBXGroup;
+			children = (
+				5D089123C458B2FE129C0265 /* ExpoModulesProvider.swift */,
+			);
+			name = finnhubstockalert;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -140,13 +140,13 @@
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "finnhubstockalert" */;
 			buildPhases = (
 				08A4A3CD28434E44B6B9DE2E /* [CP] Check Pods Manifest.lock */,
-				D75BF6FBDCC10038C692D633 /* [Expo] Configure project */,
+				AB517C4426FEAE7AE7C01D2B /* [Expo] Configure project */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */,
-				4183AD23A63EA72A51981FEC /* [CP] Embed Pods Frameworks */,
+				E6FFC1E1D340371EDF652FF1 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -196,7 +196,7 @@
 				BB2F792D24A3F905000567C9 /* Expo.plist in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 				3E461D99554A48A4959DE609 /* SplashScreen.storyboard in Resources */,
-				4E7E52136253E664282E5751 /* PrivacyInfo.xcprivacy in Resources */,
+				0F9BB11E4C29B2F2CB571BDA /* PrivacyInfo.xcprivacy in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -242,28 +242,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4183AD23A63EA72A51981FEC /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-finnhubstockalert/Pods-finnhubstockalert-frameworks.sh",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/React-Core-prebuilt/React.framework/React",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ReactNativeDependencies/ReactNativeDependencies.framework/ReactNativeDependencies",
-				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeDependencies.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-finnhubstockalert/Pods-finnhubstockalert-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		800E24972A6A228C8D4807E9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -298,7 +276,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-finnhubstockalert/Pods-finnhubstockalert-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D75BF6FBDCC10038C692D633 /* [Expo] Configure project */ = {
+		AB517C4426FEAE7AE7C01D2B /* [Expo] Configure project */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
 			buildActionMask = 2147483647;
@@ -322,6 +300,28 @@
 			shellPath = /bin/sh;
 			shellScript = "# This script configures Expo modules and generates the modules provider file.\nbash -l -c \"./Pods/Target\\ Support\\ Files/Pods-finnhubstockalert/expo-configure-project.sh\"\n";
 		};
+		E6FFC1E1D340371EDF652FF1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-finnhubstockalert/Pods-finnhubstockalert-frameworks.sh",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/React-Core-prebuilt/React.framework/React",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/ReactNativeDependencies/ReactNativeDependencies.framework/ReactNativeDependencies",
+				"${PODS_XCFRAMEWORKS_BUILD_DIR}/hermes-engine/Pre-built/hermes.framework/hermes",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/React.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactNativeDependencies.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/hermes.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-finnhubstockalert/Pods-finnhubstockalert-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -330,7 +330,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F11748422D0307B40044C1D9 /* AppDelegate.swift in Sources */,
-				F847F48742F5BBD88B2BB2A7 /* ExpoModulesProvider.swift in Sources */,
+				B24AE336B1426D96132C5A2B /* ExpoModulesProvider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,7 +339,7 @@
 /* Begin XCBuildConfiguration section */
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A4B2AC5C1C3FACDA745D8AD8 /* Pods-finnhubstockalert.debug.xcconfig */;
+			baseConfigurationReference = 0700AE3EB7C1CB625D443CCA /* Pods-finnhubstockalert.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -375,7 +375,7 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 68CBF8A3C010FC5396469E0A /* Pods-finnhubstockalert.release.xcconfig */;
+			baseConfigurationReference = 3FD82FB35B06E1347FE3FD54 /* Pods-finnhubstockalert.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
