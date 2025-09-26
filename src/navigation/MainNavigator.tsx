@@ -8,7 +8,10 @@ const Tab = createBottomTabNavigator<MainTabParamList>();
 
 export const MainNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={{ headerShown: false }}>
+    <Tab.Navigator screenOptions={{
+        headerShown: false,
+        tabBarShowLabel: true
+    }}>
       <Tab.Screen name={ScreenNames.Home} component={HomeScreen} />
       <Tab.Screen name={ScreenNames.Watchlist} component={WatchListScreen} />
       <Tab.Screen name={ScreenNames.AddAlert} component={AddAlertScreen} />
