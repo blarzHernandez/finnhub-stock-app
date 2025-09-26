@@ -1,9 +1,10 @@
 import { View, Text } from 'react-native';
+import { SafeAreaContainer } from '../../../shared/components/SafeAreaContainer';
 
 export const HomeScreen = () => {
   return (
-    <View style={{flex:1, padding:12}}>
+    <SafeAreaContainer>
       <Text>Home Screen</Text>
-    </View>
+    </SafeAreaContainer>
   );
 };
