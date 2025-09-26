@@ -40,9 +40,6 @@ export const Spacing = {
   },
 } as const;
 
-/**
- * Border Radius System
- */
 export const BorderRadius = {
   none: 0,
   xs: 4,
@@ -53,16 +50,12 @@ export const BorderRadius = {
   "2xl": 24,
   full: 9999,
 
-  // Semantic border radius
   button: 16,
   card: 12,
   input: 8,
   avatar: 9999,
 } as const;
 
-/**
- * Shadow System
- */
 export const Shadows = {
   none: {
     shadowColor: "transparent",

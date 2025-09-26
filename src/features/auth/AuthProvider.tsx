@@ -1,79 +1,80 @@
-import React, { createContext, useContext, useEffect, useState } from "react";
-import * as WebBrowser from "expo-web-browser";
-import * as AuthSession from "expo-auth-session";
-import Constants from "expo-constants";
-import * as SecureStore from "expo-secure-store";
-import { StorageKey } from "../../storage/types";
+import React, { createContext, useContext, useEffect, useState } from 'react';
+import * as Linking from 'expo-linking';
+import { authenticate, getStoredToken, storeToken, removeToken } from './services/authService';
+import { AUTH_ERRORS } from './constants/authConstants';
 
-type AuthState = {
-  token?: string | null;
+
+interface AuthState {
+  token: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
   signIn: () => Promise<void>;
   signOut: () => Promise<void>;
-};
+}
+
+
 const AuthContext = createContext<AuthState | undefined>(undefined);
+
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    (async () => {
+    const initializeAuth = async (): Promise<void> => {
       try {
-        if (!StorageKey.AuthToken) {
-          throw new Error("StorageKey.AuthToken is undefined");
-        }
-        const authToken = await SecureStore.getItemAsync(StorageKey.AuthToken);
-        setToken(authToken ?? null);
+        const storedToken = await getStoredToken();
+        setToken(storedToken);
       } catch (error) {
-        console.error('Error loading auth token:', error);
+        setToken(null);
       } finally {
         setIsLoading(false);
       }
-    })();
+    };
+
+    initializeAuth();
   }, []);
 
-  const signIn = async () => {
+  const signIn = async (): Promise<void> => {
     try {
-      const AUTH0_DOMAIN = Constants.expoConfig?.extra?.AUTH0_DOMAIN;
-      const AUTH0_CLIENT_ID = Constants.expoConfig?.extra?.AUTH0_CLIENT_ID;
-      const redirectUri = AuthSession.makeRedirectUri({});
-      const authUrl = `https://${AUTH0_DOMAIN}/authorize?client_id=${AUTH0_CLIENT_ID}&response_type=token&scope=openid profile email&redirect_uri=${encodeURIComponent(
-        redirectUri
-      )}`;
-
-      const result = await WebBrowser.openAuthSessionAsync(authUrl, redirectUri);
-
-      if (
-        (result as any).type === "success" &&
-        (result as any).params?.access_token
-      ) {
-        const accessToken = (result as any).params.access_token;
-        setToken(accessToken);
-        await SecureStore.setItemAsync(StorageKey.AuthToken, accessToken);
-      }
+      const accessToken = await authenticate();
+      await storeToken(accessToken);
+      setToken(accessToken);
     } catch (error) {
-      console.error('Sign in error:', error);
+      throw error;
     }
   };
 
-  const signOut = async () => {
-    setToken(null);
-    await SecureStore.deleteItemAsync(StorageKey.AuthToken);
+  const signOut = async (): Promise<void> => {
+    try {
+      await removeToken();
+      setToken(null);
+    } catch (error) {
+      throw error;
+    }
   };
 
-  const isAuthenticated = !!token;
+  const isAuthenticated = Boolean(token);
+
+  const contextValue: AuthState = {
+    token,
+    isAuthenticated,
+    isLoading,
+    signIn,
+    signOut,
+  };
 
   return (
-    <AuthContext.Provider value={{ token, isAuthenticated, isLoading, signIn, signOut }}>
-      {children}
-    </AuthContext.Provider>
+    <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>
   );
 };
 
-export const useAuth = () => {
-  const authContext = useContext(AuthContext);
-  if (!authContext) throw new Error("useAuth must be used inside AuthProvider");
-  return authContext;
+export const useAuth = (): AuthState => {
+  const context = useContext(AuthContext);
+
+  if (!context) {
+    throw new Error(AUTH_ERRORS.PROVIDER_NOT_FOUND);
+  }
+
+  return context;
 };

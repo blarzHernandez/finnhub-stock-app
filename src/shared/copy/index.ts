@@ -4,14 +4,12 @@
  */
 
 export const AuthCopy = {
-  // App Branding
   app: {
     name: "FinnHub Stock Alert",
     tagline: "Track your investments with confidence",
     description: "Real-time stock alerts and portfolio tracking made simple",
   },
 
-  // Login Screen
   login: {
     welcome: {
       title: "Welcome Back",
@@ -43,7 +41,6 @@ export const AuthCopy = {
     },
   },
 
-  // Error Messages
   errors: {
     signInFailed: "Sign in failed. Please try again.",
     networkError: "Network error. Check your connection.",
@@ -51,13 +48,11 @@ export const AuthCopy = {
     authRequired: "Authentication required to continue.",
   },
 
-  // Success Messages
   success: {
     signInSuccess: "Successfully signed in!",
     signOutSuccess: "Successfully signed out!",
   },
 
-  // Loading States
   loading: {
     authenticating: "Authenticating...",
     signingOut: "Signing out...",
@@ -65,11 +60,7 @@ export const AuthCopy = {
   },
 } as const;
 
-/**
- * Content Copy - General App
- */
 export const AppCopy = {
-  // Navigation
   navigation: {
     home: "Home",
     watchlist: "Watchlist",
@@ -78,7 +69,6 @@ export const AppCopy = {
     settings: "Settings",
   },
 
-  // Common Actions
   actions: {
     save: "Save",
     cancel: "Cancel",
@@ -94,7 +84,6 @@ export const AppCopy = {
     done: "Done",
   },
 
-  // Common States
   states: {
     loading: "Loading...",
     error: "Error",
@@ -104,7 +93,6 @@ export const AppCopy = {
     tryAgain: "Try again",
   },
 
-  // Accessibility Labels
   a11y: {
     menu: "Open menu",
     close: "Close",

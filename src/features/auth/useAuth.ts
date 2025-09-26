@@ -1,3 +1,2 @@
-
-import { useAuth as useAuthCtx } from './AuthProvider';
-export const useAuth = useAuthCtx;
+import { useAuth as useAuthContext } from "./AuthProvider";
+export const useAuth = useAuthContext;

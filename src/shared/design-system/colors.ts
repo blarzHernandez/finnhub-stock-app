@@ -10,7 +10,7 @@ export const Colors = {
     200: "#9fa8da",
     300: "#7986cb",
     400: "#5c6bc0",
-    500: "#3f51b5", // Main brand color
+    500: "#3f51b5",
     600: "#3949ab",
     700: "#303f9f",
     800: "#283593",
@@ -24,7 +24,7 @@ export const Colors = {
     200: "#ffcc80",
     300: "#ffb74d",
     400: "#ffa726",
-    500: "#ff9800", // Main accent
+    500: "#ff9800",
     600: "#fb8c00",
     700: "#f57c00",
     800: "#ef6c00",
@@ -49,7 +49,6 @@ export const Colors = {
     700: "#d32f2f",
   },
 
-  // Neutral Colors
   neutral: {
     0: "#ffffff",
     50: "#fafafa",
@@ -65,14 +64,12 @@ export const Colors = {
     1000: "#000000",
   },
 
-  // Surface Colors
   surface: {
     background: "#ffffff",
     elevated: "#f8f9fa",
     overlay: "rgba(0, 0, 0, 0.5)",
   },
 
-  // Gradient Colors
   gradients: {
     primary: ["#1a237e", "#3949ab", "#5c6bc0"],
     accent: ["#ff6b35", "#f7931e"],
@@ -80,7 +77,6 @@ export const Colors = {
     sunset: ["#ff7f50", "#ff6347", "#ff4500"],
   },
 
-  // Text Colors
   text: {
     primary: "#212121",
     secondary: "#757575",
@@ -90,7 +86,6 @@ export const Colors = {
     onAccent: "#ffffff",
   },
 
-  // Alpha variants for overlays
   alpha: {
     white10: "rgba(255, 255, 255, 0.1)",
     white20: "rgba(255, 255, 255, 0.2)",

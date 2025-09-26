@@ -8,13 +8,13 @@ import {
   ActivityIndicator,
   StatusBar,
   Dimensions,
-  SafeAreaView,
   ScrollView,
 } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 import { useAuth } from '../AuthProvider';
 import { Theme, AuthCopy } from '../../../shared';
+import { SafeAreaContainer } from '../../../shared/components/SafeAreaContainer';
 
 const { width, height } = Dimensions.get('window');
 
@@ -34,7 +34,7 @@ export const LoginScreen = () => {
   };
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaContainer>
       <StatusBar barStyle="light-content" backgroundColor={Theme.colors.primary[900]} />
 
       {/* Background Gradient */}
@@ -115,15 +115,10 @@ export const LoginScreen = () => {
                 )}
               </LinearGradient>
             </TouchableOpacity>
-
-            {/* Privacy Notice */}
-            <Text style={styles.privacyText}>
-              {AuthCopy.login.legal.privacyNotice}
-            </Text>
           </View>
         </ScrollView>
       </LinearGradient>
-    </SafeAreaView>
+    </SafeAreaContainer>
   );
 };
 
