@@ -1,17 +1,28 @@
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { MainTabParamList, ScreenNames } from "./types";
-import { HomeScreen } from "../features/home/screens/HomeScreen";
-import { WatchListScreen } from "../features/watchlist/screens/WatchListScreen";
-import { AddAlertScreen } from "../features/alerts/screens/AddAlertScreen";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { HomeScreen } from '../features/home/screens/HomeScreen';
+import { ScreenNames } from './types';
+import { Ionicons } from '@expo/vector-icons';
+import { WatchListScreen } from '../features/watchlist/screens/WatchListScreen';
+import { AddAlertScreen } from '../features/alerts/screens/AddAlertScreen';
+import { getTabBarIcon } from '../utils/tabBarIconUtil';
 
-const Tab = createBottomTabNavigator<MainTabParamList>();
+const Tab = createBottomTabNavigator();
+
+const DEFAULT_COLOR = '#007AFF';
 
 export const MainNavigator = () => {
   return (
-    <Tab.Navigator screenOptions={{
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
         headerShown: false,
-        tabBarShowLabel: true
-    }}>
+        tabBarActiveTintColor: DEFAULT_COLOR,
+        tabBarInactiveTintColor: 'gray',
+        tabBarIcon: ({ focused, color, size }) => {
+          const iconName = getTabBarIcon(route.name, focused);
+          return <Ionicons name={iconName} size={size} color={color} />;
+        },
+      })}
+    >
       <Tab.Screen name={ScreenNames.Home} component={HomeScreen} />
       <Tab.Screen name={ScreenNames.Watchlist} component={WatchListScreen} />
       <Tab.Screen name={ScreenNames.AddAlert} component={AddAlertScreen} />
