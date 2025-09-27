@@ -72,7 +72,9 @@ const buildAuthenticatedWebSocketUrl = (): string => {
       "FinnHub WebSocket requires EXPO_PUBLIC_FINNHUB_API_KEY environment variable"
     );
   }
-  return `${FINNHUB_WEBSOCKET_BASE_URL}?token=${finnhubApiKey}`;
+
+  const wsUrl = `${FINNHUB_WEBSOCKET_BASE_URL}?token=${finnhubApiKey}`;
+  return wsUrl;
 };
 
 /**
@@ -94,7 +96,9 @@ const sendStockSymbolSubscriptionRequest = (stockSymbol: string): void => {
   const { socketInstance } = webSocketConnectionState;
 
   if (!socketInstance || socketInstance.readyState !== WebSocket.OPEN) {
-    console.warn(`Cannot subscribe to ${stockSymbol}: WebSocket not connected`);
+    console.warn(
+      `Cannot subscribe to ${stockSymbol}: WebSocket not connected (state: ${socketInstance?.readyState})`
+    );
     return;
   }
 
@@ -103,7 +107,6 @@ const sendStockSymbolSubscriptionRequest = (stockSymbol: string): void => {
     symbol: stockSymbol.toUpperCase(),
   };
 
-  console.log(`Subscribing to ${stockSymbol}:`, subscriptionRequest);
   socketInstance.send(JSON.stringify(subscriptionRequest));
 };
 
@@ -162,21 +165,29 @@ const handleWebSocketConnectionOpen = (): void => {
  * Handles incoming WebSocket messages
  */
 const handleIncomingWebSocketMessage = (messageEvent: MessageEvent): void => {
+  console.log("📨 Received WebSocket message:", messageEvent.data);
+
   try {
     const parsedMessage: FinnhubWebSocketMessage = JSON.parse(
       messageEvent.data
     );
 
+    console.log("📨 Parsed message:", parsedMessage);
+
     if (parsedMessage.type === "trade") {
+      console.log("📈 Processing trade data:", parsedMessage);
       notifyTradeDataHandlers(parsedMessage);
     } else if (parsedMessage.type === "ping") {
-      // Handle ping messages from FinnHub
+      console.log("🏓 Received ping, sending pong...");
       webSocketConnectionState.socketInstance?.send(
         JSON.stringify({ type: "pong" })
       );
+    } else {
+      console.log("❓ Unknown message type:", parsedMessage.type);
     }
   } catch (messageParsingError) {
-    console.error("Failed to parse WebSocket message:", messageParsingError);
+    console.error("❌ Failed to parse WebSocket message:", messageParsingError);
+    console.error("❌ Raw message data:", messageEvent.data);
   }
 };
 
@@ -184,7 +195,12 @@ const handleIncomingWebSocketMessage = (messageEvent: MessageEvent): void => {
  * Handles WebSocket connection errors
  */
 const handleWebSocketConnectionError = (errorEvent: Event): void => {
-  console.error("FinnHub WebSocket connection error:", errorEvent);
+  console.error("❌ FinnHub WebSocket connection error:", errorEvent);
+  console.error("❌ Error details:", {
+    type: errorEvent.type,
+    target: errorEvent.target,
+    timeStamp: errorEvent.timeStamp,
+  });
   webSocketConnectionState.isCurrentlyConnected = false;
   notifyConnectionStateHandlers(false);
 };
@@ -192,7 +208,15 @@ const handleWebSocketConnectionError = (errorEvent: Event): void => {
 /**
  * Handles WebSocket connection closure
  */
-const handleWebSocketConnectionClose = (): void => {
+const handleWebSocketConnectionClose = (closeEvent?: CloseEvent): void => {
+  console.log("🔌 FinnHub WebSocket connection closed");
+  if (closeEvent) {
+    console.log("🔌 Close details:", {
+      code: closeEvent.code,
+      reason: closeEvent.reason,
+      wasClean: closeEvent.wasClean,
+    });
+  }
   webSocketConnectionState.isCurrentlyConnected = false;
   notifyConnectionStateHandlers(false);
 };
@@ -216,6 +240,8 @@ const initializeWebSocketConnection = (): void => {
   console.log(`Initializing WebSocket connection...`);
 
   if (webSocketConnectionState.socketInstance?.readyState === WebSocket.OPEN) {
+    console.log("WebSocket already connected, skipping initialization");
+
     return; // Connection already established
   }
 
@@ -224,13 +250,20 @@ const initializeWebSocketConnection = (): void => {
 
   const connectionOptions = createWebSocketConnectionOptions();
 
+  console.log("🔄 Creating ReconnectingWebSocket instance...");
   webSocketConnectionState.socketInstance = new ReconnectingWebSocket(
     authenticatedWebSocketUrl,
     [],
     connectionOptions
   );
 
+  console.log("🔄 Setting up WebSocket event listeners...");
   setupWebSocketEventListeners(webSocketConnectionState.socketInstance);
+
+  console.log(
+    "🔄 WebSocket initialization complete, current state:",
+    webSocketConnectionState.socketInstance.readyState
+  );
 };
 
 /**
