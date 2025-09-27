@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { AlertItem } from "../../../types";
 import { loadJSON, saveJSON } from "../../../storage/persistent";
 import { StorageKey } from "../../../storage/types";
@@ -19,11 +18,15 @@ interface AlertsProviderProps {
 
 const AlertsContext = createContext<AlertsContextValue | undefined>(undefined);
 
+const generateId = (): string => {
+  return Date.now().toString(36) + Math.random().toString(36).substr(2);
+};
+
 const createNewAlert = (
   stockSymbol: string,
   targetPrice: number
 ): AlertItem => ({
-  id: uuidv4(),
+  id: generateId(),
   symbol: stockSymbol,
   price: targetPrice,
   enabled: true,
@@ -78,8 +81,21 @@ export const AlertsProvider = ({ children }: AlertsProviderProps) => {
   }, [alerts]);
 
   const addAlert = (stockSymbol: string, targetPrice: number): void => {
-    const newAlert = createNewAlert(stockSymbol, targetPrice);
-    setAlerts((currentAlerts) => [...currentAlerts, newAlert]);
+    console.log("Adding alert for", stockSymbol, "at price", targetPrice);
+
+    try {
+      const newAlert = createNewAlert(stockSymbol, targetPrice);
+      console.log("Created new alert:", newAlert);
+      setAlerts((currentAlerts) => {
+        const updatedAlerts = [...currentAlerts, newAlert];
+        console.log("Updated alerts array:", updatedAlerts);
+        return updatedAlerts;
+      });
+      console.log("Alert added successfully to context");
+    } catch (error) {
+      console.error("Error in addAlert:", error);
+      throw error; // Re-throw so the form can catch it
+    }
   };
 
   const removeAlert = (alertId: string): void => {

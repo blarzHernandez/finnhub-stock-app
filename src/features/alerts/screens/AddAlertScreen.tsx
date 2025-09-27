@@ -1,9 +1,12 @@
-import { Text, View } from "react-native"
+import React from "react";
+import { View } from "react-native";
+import { AddAlertForm } from "../components/AddAlertForm";
+import { SafeAreaContainer } from "../../../shared/components/SafeAreaContainer";
 
-export const AddAlertScreen = ()=>{
-    return (
-        <View>
-            <Text>Add Alert Screen</Text>
-        </View>
-    )
-}
+export const AddAlertScreen = ({ navigation }: any) => {
+  return (
+    <SafeAreaContainer>
+      <AddAlertForm onSaved={() => navigation.goBack()} />
+    </SafeAreaContainer>
+  );
+};
