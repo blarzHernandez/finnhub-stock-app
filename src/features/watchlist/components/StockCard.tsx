@@ -15,7 +15,9 @@ export const StockCard = ({ quote }: { quote: StockQuote }) => {
         {hasValidData ? formatCurrency(quote.current) : "Loading..."}
       </Text>
       <Text style={[styles.change, { color: positive ? "green" : "red" }]}>
-        {hasValidData ? `${changePercent.toFixed(2)}%` : "--"}
+        {hasValidData && typeof changePercent === "number"
+          ? `${changePercent.toFixed(2)}%`
+          : "--"}
       </Text>
       {!hasValidData && <Text style={styles.status}>No data available</Text>}
     </View>

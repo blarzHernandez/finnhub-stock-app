@@ -10,6 +10,7 @@ interface AlertsContextValue {
   addAlert: (stockSymbol: string, targetPrice: number) => void;
   removeAlert: (alertId: string) => void;
   updateAlertLastTriggeredTime: (alertId: string, timestampMs: number) => void;
+  clearAllAlerts: () => void;
 }
 
 interface AlertsProviderProps {
@@ -111,11 +112,16 @@ export const AlertsProvider = ({ children }: AlertsProviderProps) => {
     );
   };
 
+  const clearAllAlerts = (): void => {
+    setAlerts(INITIAL_ALERTS_STATE);
+  };
+
   const contextValue: AlertsContextValue = {
     alerts,
     addAlert,
     removeAlert,
     updateAlertLastTriggeredTime,
+    clearAllAlerts,
   };
 
   return (

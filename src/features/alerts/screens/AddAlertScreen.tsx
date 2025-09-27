@@ -6,7 +6,7 @@ import { SafeAreaContainer } from "../../../shared/components/SafeAreaContainer"
 export const AddAlertScreen = ({ navigation }: any) => {
   return (
     <SafeAreaContainer>
-      <AddAlertForm onSaved={() => navigation.goBack()} />
+      <AddAlertForm onSaved={() => navigation.navigate("Watchlist")} />
     </SafeAreaContainer>
   );
 };

@@ -1,8 +1,14 @@
-import React, { createContext, useContext, useEffect, useState } from 'react';
-import * as Linking from 'expo-linking';
-import { authenticate, getStoredToken, storeToken, removeToken } from './services/authService';
-import { AUTH_ERRORS } from './constants/authConstants';
-
+import React, { createContext, useContext, useEffect, useState } from "react";
+import * as Linking from "expo-linking";
+import {
+  authenticate,
+  getStoredToken,
+  storeToken,
+  removeToken,
+} from "./services/authService";
+import { AUTH_ERRORS } from "./constants/authConstants";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import { StorageKey } from "../../storage/types";
 
 interface AuthState {
   token: string | null;
@@ -12,9 +18,7 @@ interface AuthState {
   signOut: () => Promise<void>;
 }
 
-
 const AuthContext = createContext<AuthState | undefined>(undefined);
-
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const [token, setToken] = useState<string | null>(null);
@@ -48,6 +52,8 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
   const signOut = async (): Promise<void> => {
     try {
       await removeToken();
+      await AsyncStorage.removeItem(StorageKey.Alerts);
+      await AsyncStorage.removeItem(StorageKey.Notifications);
       setToken(null);
     } catch (error) {
       throw error;
