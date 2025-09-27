@@ -14,6 +14,11 @@
     },
     "preview": {
       "distribution": "internal",
+      "env": {
+        "EXPO_PUBLIC_AUTH0_DOMAIN": "blarzdev.us.auth0.com",
+        "EXPO_PUBLIC_AUTH0_CLIENT_ID": "SdJc6eEfbx17IDrMV14LOWKlbYYc3iko",
+        "EXPO_PUBLIC_FINNHUB_API_BASE": "https://finnhub.io/api/v1"
+      },
       "android": {
         "buildType": "apk"
       }

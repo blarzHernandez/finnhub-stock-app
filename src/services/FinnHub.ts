@@ -4,7 +4,7 @@ import apiClient from "./apiClient";
 
 const FINNHUB_API_BASE =
   process.env.EXPO_PUBLIC_FINNHUB_API_BASE || "https://finnhub.io/api/v1";
-const FINNHUB_API_KEY = process.env.EXPO_PUBLIC_FINNHUB_API_KEY;
+const FINNHUB_API_KEY = process.env.FINNHUB_API_KEY;
 
 export async function fetchQuote(symbol: string): Promise<StockQuote> {
   const res = await apiClient.get(`${FINNHUB_API_BASE}/quote`, {
