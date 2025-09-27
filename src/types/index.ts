@@ -4,3 +4,12 @@ export type StockQuote = {
   changePercent: number;
   timestamp: number;
 };
+
+export type AlertItem = {
+  id: string;
+  symbol: string;
+  price: number;
+  enabled: boolean;
+  lastTriggeredAt?: number;
+  cooldownMilliseconds?: number;
+};

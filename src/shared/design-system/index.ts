@@ -9,7 +9,6 @@ import { Spacing, BorderRadius, Shadows } from "./spacing";
 
 export { Colors, Typography, Spacing, BorderRadius, Shadows };
 
-// Design Tokens - Combined theme object
 export const Theme = {
   colors: Colors,
   typography: Typography,
@@ -18,7 +17,6 @@ export const Theme = {
   shadows: Shadows,
 } as const;
 
-// Type definitions for theme
 export type ThemeColors = typeof Colors;
 export type ThemeTypography = typeof Typography;
 export type ThemeSpacing = typeof Spacing;
