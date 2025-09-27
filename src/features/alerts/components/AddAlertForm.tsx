@@ -2,6 +2,7 @@ import React from "react";
 import { View, TextInput, Button, Text, StyleSheet, Alert } from "react-native";
 import { useForm, Controller, RegisterOptions } from "react-hook-form";
 import { useAlerts } from "../context/AlertsContext";
+import { StockSymbolDropdown } from "./StockSymbolDropdown";
 
 type AlertFormData = {
   symbol: string;
@@ -17,19 +18,7 @@ const VALIDATION_RULES: Record<
   RegisterOptions<AlertFormData>
 > = {
   symbol: {
-    required: "Stock symbol is required",
-    minLength: {
-      value: 1,
-      message: "Symbol must be at least 1 character",
-    },
-    maxLength: {
-      value: 10,
-      message: "Symbol must be less than 10 characters",
-    },
-    pattern: {
-      value: /^[A-Za-z]+$/,
-      message: "Symbol can only contain letters",
-    },
+    required: "Please select a stock symbol",
   },
   price: {
     required: "Price is required",
@@ -57,16 +46,13 @@ export const AddAlertForm = ({ onSaved }: AlertFormProps) => {
   } = useForm<AlertFormData>({
     mode: "onChange",
     defaultValues: {
-      symbol: "AAPL",
-      price: "", // Keep empty - user should enter their own price
+      symbol: "",
+      price: "",
     },
   });
 
   const onSubmit = (data: AlertFormData) => {
     const parsedPrice = Number(data.price);
-
-    // This validation is redundant since react-hook-form already validates it
-    // But keeping as a safety net
     if (Number.isNaN(parsedPrice) || parsedPrice <= 0) {
       console.error(
         "Invalid price passed validation:",
@@ -78,7 +64,6 @@ export const AddAlertForm = ({ onSaved }: AlertFormProps) => {
     }
 
     try {
-      console.log("Attempting to add alert:", data.symbol, parsedPrice);
       addAlert(data.symbol.toUpperCase().trim(), parsedPrice);
       console.log("Alert added successfully");
       reset();
@@ -102,15 +87,11 @@ export const AddAlertForm = ({ onSaved }: AlertFormProps) => {
           control={control}
           name="symbol"
           rules={VALIDATION_RULES.symbol}
-          render={({ field: { onChange, onBlur, value } }) => (
-            <TextInput
-              style={[styles.textInput, errors.symbol && styles.textInputError]}
+          render={({ field: { onChange, value } }) => (
+            <StockSymbolDropdown
               value={value}
-              onChangeText={onChange}
-              onBlur={onBlur}
-              placeholder="AAPL"
-              autoCapitalize="characters"
-              autoCorrect={false}
+              onSelect={onChange}
+              error={!!errors.symbol}
             />
           )}
         />
