@@ -6,7 +6,7 @@ import { formatCurrency } from "../../../utils/format";
 export const StockCard = ({ quote }: { quote: StockQuote }) => {
   const changePercent = quote.changePercent ?? 0;
   const positive = changePercent >= 0;
-  const hasValidData = quote.current > 0;
+  const hasValidData = quote.current > 0 && quote.changePercent !== null;
 
   return (
     <View style={styles.card}>

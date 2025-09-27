@@ -2,13 +2,15 @@ import React from "react";
 import { Dropdown, DropdownOption } from "../../../shared/components/Dropdown";
 
 const STOCK_SYMBOLS: DropdownOption[] = [
+  { label: "Tesla Inc. (TSLA)", value: "TSLA" },
+  { label: "NVIDIA Corp. (NVDA)", value: "NVDA" },
   { label: "Apple Inc. (AAPL)", value: "AAPL" },
   { label: "Microsoft Corp. (MSFT)", value: "MSFT" },
-  { label: "Google/Alphabet (GOOGL)", value: "GOOGL" },
   { label: "Amazon.com Inc. (AMZN)", value: "AMZN" },
-  { label: "Tesla Inc. (TSLA)", value: "TSLA" },
   { label: "Meta Platforms (META)", value: "META" },
-  { label: "NVIDIA Corp. (NVDA)", value: "NVDA" },
+  { label: "GameStop Corp. (GME)", value: "GME" },
+  { label: "AMC Entertainment (AMC)", value: "AMC" },
+  { label: "Google/Alphabet (GOOGL)", value: "GOOGL" },
   { label: "Netflix Inc. (NFLX)", value: "NFLX" },
   { label: "Adobe Inc. (ADBE)", value: "ADBE" },
   { label: "Salesforce Inc. (CRM)", value: "CRM" },
