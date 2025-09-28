@@ -23,7 +23,7 @@ export function useWebSocketManager(): WebSocketManagerState {
 
   const uniqueStockSymbols = useMemo(() => {
     const symbols = Array.from(new Set(alerts.map((alert) => alert.symbol)));
-    const finalSymbols = symbols.length > 0 ? symbols : ["AAPL"];
+    const finalSymbols = symbols.length > 0 ? symbols : ["BINANCE:BTCUSDT"];
     return finalSymbols;
   }, [alerts]);
 
@@ -140,6 +140,12 @@ export function useWebSocketManager(): WebSocketManagerState {
           currentTimestamp - (alert.lastTriggeredAt ?? 0);
         const alertCooldownPeriod =
           alert.cooldownMilliseconds ?? DEFAULT_ALERT_COOLDOWN_MS;
+
+        console.log(
+          "Alert evaluation:",
+          currentPrice > alert.price &&
+            timeSinceLastTrigger > alertCooldownPeriod
+        );
 
         // Check if price threshold is met and cooldown has passed
         if (

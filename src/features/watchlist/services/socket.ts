@@ -149,13 +149,10 @@ const notifyTradeDataHandlers = (tradeData: FinnhubRealTimeTradeData): void => {
   );
 };
 
-// ===== EVENT HANDLERS =====
-
 /**
  * Handles WebSocket connection establishment
  */
 const handleWebSocketConnectionOpen = (): void => {
-  console.log("✅ FinnHub WebSocket connection established successfully");
   webSocketConnectionState.isCurrentlyConnected = true;
   notifyConnectionStateHandlers(true);
   resubscribeToAllStockSymbols();
@@ -165,29 +162,22 @@ const handleWebSocketConnectionOpen = (): void => {
  * Handles incoming WebSocket messages
  */
 const handleIncomingWebSocketMessage = (messageEvent: MessageEvent): void => {
-  console.log("📨 Received WebSocket message:", messageEvent.data);
-
   try {
     const parsedMessage: FinnhubWebSocketMessage = JSON.parse(
       messageEvent.data
     );
 
-    console.log("📨 Parsed message:", parsedMessage);
-
     if (parsedMessage.type === "trade") {
-      console.log("📈 Processing trade data:", parsedMessage);
       notifyTradeDataHandlers(parsedMessage);
     } else if (parsedMessage.type === "ping") {
-      console.log("🏓 Received ping, sending pong...");
       webSocketConnectionState.socketInstance?.send(
         JSON.stringify({ type: "pong" })
       );
     } else {
-      console.log("❓ Unknown message type:", parsedMessage.type);
+      console.warn("Unknown message type:", parsedMessage.type);
     }
   } catch (messageParsingError) {
-    console.error("❌ Failed to parse WebSocket message:", messageParsingError);
-    console.error("❌ Raw message data:", messageEvent.data);
+    console.error("Raw message data:", messageEvent.data);
   }
 };
 
@@ -195,12 +185,8 @@ const handleIncomingWebSocketMessage = (messageEvent: MessageEvent): void => {
  * Handles WebSocket connection errors
  */
 const handleWebSocketConnectionError = (errorEvent: Event): void => {
-  console.error("❌ FinnHub WebSocket connection error:", errorEvent);
-  console.error("❌ Error details:", {
-    type: errorEvent.type,
-    target: errorEvent.target,
-    timeStamp: errorEvent.timeStamp,
-  });
+  console.error("FinnHub WebSocket connection error:", errorEvent);
+
   webSocketConnectionState.isCurrentlyConnected = false;
   notifyConnectionStateHandlers(false);
 };
@@ -237,33 +223,21 @@ const setupWebSocketEventListeners = (
  * Initializes WebSocket connection with reconnection capabilities
  */
 const initializeWebSocketConnection = (): void => {
-  console.log(`Initializing WebSocket connection...`);
-
   if (webSocketConnectionState.socketInstance?.readyState === WebSocket.OPEN) {
-    console.log("WebSocket already connected, skipping initialization");
-
     return; // Connection already established
   }
 
   const authenticatedWebSocketUrl = buildAuthenticatedWebSocketUrl();
-  console.log(`Connecting to FinnHub WebSocket: ${authenticatedWebSocketUrl}`);
 
   const connectionOptions = createWebSocketConnectionOptions();
 
-  console.log("🔄 Creating ReconnectingWebSocket instance...");
   webSocketConnectionState.socketInstance = new ReconnectingWebSocket(
     authenticatedWebSocketUrl,
     [],
     connectionOptions
   );
 
-  console.log("🔄 Setting up WebSocket event listeners...");
   setupWebSocketEventListeners(webSocketConnectionState.socketInstance);
-
-  console.log(
-    "🔄 WebSocket initialization complete, current state:",
-    webSocketConnectionState.socketInstance.readyState
-  );
 };
 
 /**
@@ -276,12 +250,6 @@ export const subscribeToStockRealTimeData = (
   targetStockSymbols: string[],
   tradeDataHandler: StockTradeDataHandler
 ): (() => void) => {
-  console.log(
-    `Subscribing to real-time data for symbols: ${targetStockSymbols.join(
-      ", "
-    )}`
-  );
-
   initializeWebSocketConnection();
 
   // Register the trade data handler
