@@ -1,5 +1,12 @@
 import React from "react";
-import { View, TextInput, Button, Text, StyleSheet, Alert } from "react-native";
+import {
+  View,
+  TextInput,
+  Text,
+  StyleSheet,
+  Alert,
+  TouchableOpacity,
+} from "react-native";
 import { useForm, Controller, RegisterOptions } from "react-hook-form";
 import { useAlerts } from "../context/AlertsContext";
 import { StockSymbolDropdown } from "./StockSymbolDropdown";
@@ -54,11 +61,6 @@ export const AddAlertForm = ({ onSaved }: AlertFormProps) => {
   const onSubmit = (data: AlertFormData) => {
     const parsedPrice = Number(data.price);
     if (Number.isNaN(parsedPrice) || parsedPrice <= 0) {
-      console.error(
-        "Invalid price passed validation:",
-        data.price,
-        parsedPrice
-      );
       Alert.alert("Invalid Price", "Please enter a valid price greater than 0");
       return;
     }
@@ -69,7 +71,6 @@ export const AddAlertForm = ({ onSaved }: AlertFormProps) => {
       reset();
       onSaved?.();
     } catch (error) {
-      console.error("Error adding alert:", error);
       Alert.alert(
         "Error",
         `Failed to save alert: ${
@@ -122,11 +123,24 @@ export const AddAlertForm = ({ onSaved }: AlertFormProps) => {
         )}
       </View>
 
-      <Button
-        title="Save Alert"
+      <TouchableOpacity
+        style={[
+          styles.saveButton,
+          (!isValid || !isDirty) && styles.saveButtonDisabled,
+        ]}
         onPress={handleSubmit(onSubmit)}
         disabled={!isValid || !isDirty}
-      />
+        activeOpacity={0.8}
+      >
+        <Text
+          style={[
+            styles.saveButtonText,
+            (!isValid || !isDirty) && styles.saveButtonTextDisabled,
+          ]}
+        >
+          Save Alert
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -160,5 +174,35 @@ const styles = StyleSheet.create({
     color: "#ff4444",
     fontSize: 14,
     marginTop: 4,
+  },
+  saveButton: {
+    backgroundColor: "#007AFF",
+    borderRadius: 8,
+    paddingVertical: 14,
+    paddingHorizontal: 20,
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 8,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 3,
+    elevation: 3,
+  },
+  saveButtonDisabled: {
+    backgroundColor: "#cccccc",
+    shadowOpacity: 0,
+    elevation: 0,
+  },
+  saveButtonText: {
+    color: "#ffffff",
+    fontSize: 16,
+    fontWeight: "600",
+  },
+  saveButtonTextDisabled: {
+    color: "#888888",
   },
 });
