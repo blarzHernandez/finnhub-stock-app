@@ -158,6 +158,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.surface.background,
     position: "relative",
+    overflow: "hidden",
   },
   emptyState: {
     flex: 1,

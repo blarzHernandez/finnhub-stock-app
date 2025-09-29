@@ -50,14 +50,7 @@ export const PortfolioOverview: React.FC<PortfolioOverviewProps> = ({
 
   return (
     <View style={styles.container} testID={testID}>
-      <PortfolioChart
-        width={chartWidth}
-        height={200}
-        showGrid={true}
-        showHeader={false}
-      />
-
-      <View style={styles.statsOverlay}>
+      <View style={styles.statsHeader}>
         <View style={styles.mainStats}>
           <Text style={styles.portfolioLabel}>Portfolio Value</Text>
           <Text style={styles.portfolioValue}>
@@ -104,6 +97,15 @@ export const PortfolioOverview: React.FC<PortfolioOverviewProps> = ({
         </View>
       </View>
 
+      <View style={styles.chartContainer}>
+        <PortfolioChart
+          width={chartWidth - 20}
+          height={140}
+          showGrid={true}
+          showHeader={false}
+        />
+      </View>
+
       <View style={styles.footer}>
         <Text style={styles.footerText}>
           Tracking {portfolioStats.symbolCount} symbol
@@ -118,7 +120,7 @@ const styles = StyleSheet.create({
   container: {
     backgroundColor: Colors.surface.background,
     borderRadius: 16,
-    padding: 20,
+    padding: 16,
     marginVertical: 8,
     shadowColor: Colors.neutral[900],
     shadowOffset: {
@@ -158,14 +160,17 @@ const styles = StyleSheet.create({
     textAlign: "center",
     lineHeight: 20,
   },
-  statsOverlay: {
-    position: "absolute",
-    top: 20,
-    left: 20,
-    right: 20,
+  statsHeader: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "flex-start",
+    marginBottom: 16,
+  },
+  chartContainer: {
+    alignItems: "center",
+    marginVertical: 8,
+    paddingHorizontal: 4,
+    overflow: "hidden",
   },
   mainStats: {
     flex: 1,
