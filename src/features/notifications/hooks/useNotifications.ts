@@ -33,9 +33,7 @@ export function useNotifications(): NotificationHookState {
   const setupNotificationHandlers = () => {
     // Handle notification received while app is in foreground
     const foregroundSubscription =
-      Notifications.addNotificationReceivedListener((notification) => {
-        console.log("Notification received in foreground:", notification);
-      });
+      Notifications.addNotificationReceivedListener((notification) => {});
 
     // Handle notification tap/click
     const responseSubscription =
@@ -45,7 +43,6 @@ export function useNotifications(): NotificationHookState {
         // Handle price alert notification tap
         if (data?.type === "price-alert" && data?.symbol) {
           // TODO: Navigate to specific stock details or watchlist
-          console.log(`Navigate to ${data.symbol} details`);
         }
       });
 

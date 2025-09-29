@@ -3,7 +3,6 @@ import { InternalAxiosRequestConfig } from "axios";
 export const logRequest = (
   config: InternalAxiosRequestConfig
 ): InternalAxiosRequestConfig => {
-  console.log(`[API Request] ${config.method?.toUpperCase()} ${config.url}`);
   return config;
 };
 

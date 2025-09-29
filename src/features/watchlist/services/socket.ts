@@ -195,14 +195,6 @@ const handleWebSocketConnectionError = (errorEvent: Event): void => {
  * Handles WebSocket connection closure
  */
 const handleWebSocketConnectionClose = (closeEvent?: CloseEvent): void => {
-  console.log("🔌 FinnHub WebSocket connection closed");
-  if (closeEvent) {
-    console.log("🔌 Close details:", {
-      code: closeEvent.code,
-      reason: closeEvent.reason,
-      wasClean: closeEvent.wasClean,
-    });
-  }
   webSocketConnectionState.isCurrentlyConnected = false;
   notifyConnectionStateHandlers(false);
 };

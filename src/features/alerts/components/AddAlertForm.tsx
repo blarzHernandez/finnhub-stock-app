@@ -67,7 +67,6 @@ export const AddAlertForm = ({ onSaved }: AlertFormProps) => {
 
     try {
       addAlert(data.symbol.toUpperCase().trim(), parsedPrice);
-      console.log("Alert added successfully");
       reset();
       onSaved?.();
     } catch (error) {
