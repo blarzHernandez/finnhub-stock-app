@@ -11,6 +11,11 @@ A real-time stock monitoring app built with React Native and Expo that provides 
 - 🔐 **Secure Authentication** - Auth0 integration for user management
 - 📱 **Cross-platform** - iOS and Android support via React Native
 
+## Demo
+
+https://github.com/user-attachments/assets/51eb76d1-f36c-483e-91f0-e79291100fca
+
+
 ## 🛠 Tech Stack
 
 ### Core Technologies
