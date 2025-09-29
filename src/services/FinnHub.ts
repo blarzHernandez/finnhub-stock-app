@@ -1,4 +1,3 @@
-import Constants from "expo-constants";
 import { StockQuote } from "../types";
 import apiClient from "./apiClient";
 

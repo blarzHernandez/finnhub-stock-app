@@ -4,8 +4,12 @@ import { AppNavigator } from "./src/navigation/AppNavigator";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { AuthProvider } from "./src/features/auth/AuthProvider";
 import { AlertsProvider } from "./src/features/alerts/context/AlertsContext";
+import { useNotificationInitialization } from "./src/features/notifications/hooks/useNotificationInitialization";
 
 export default function App() {
+  // For initializing notification service on app startup
+  useNotificationInitialization();
+
   return (
     <AuthProvider>
       <SafeAreaProvider>

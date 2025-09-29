@@ -7,6 +7,7 @@ import {
 import { StockQuote } from "../../../types";
 import type { FinnhubRealTimeTradeData } from "../services/socket";
 import { fetchQuote } from "../../../services/FinnHub";
+import { NotificationService } from "../../../services/NotificationService";
 
 const DEFAULT_ALERT_COOLDOWN_MS = 60_000; // 1 minute
 
@@ -141,26 +142,20 @@ export function useWebSocketManager(): WebSocketManagerState {
         const alertCooldownPeriod =
           alert.cooldownMilliseconds ?? DEFAULT_ALERT_COOLDOWN_MS;
 
-        console.log(
-          "Alert evaluation:",
-          currentPrice > alert.price &&
-            timeSinceLastTrigger > alertCooldownPeriod
-        );
-
         // Check if price threshold is met and cooldown has passed
         if (
           currentPrice > alert.price &&
           timeSinceLastTrigger > alertCooldownPeriod
         ) {
-          // TODO: Implement notification system
-          // presentLocalNotification(
-          //   `${alert.symbol} Alert Triggered`,
-          //   `${alert.symbol} reached $${currentPrice.toFixed(2)} (target: $${alert.price.toFixed(2)})`
-          // );
+          // Send local notification
+          NotificationService.sendPriceAlertNotification(
+            alert.symbol,
+            currentPrice,
+            alert.price
+          ).catch((error) => {
+            console.error("Failed to send notification:", error);
+          });
 
-          console.log(
-            `Alert triggered for ${alert.symbol}: $${currentPrice.toFixed(2)}`
-          );
           updateAlertLastTriggeredTime(alert.id, currentTimestamp);
         }
       });

@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from "react";
 import { AlertItem } from "../../../types";
 import { loadJSON, saveJSON } from "../../../storage/persistent";
 import { StorageKey } from "../../../storage/types";
+import { NotificationService } from "../../../services/NotificationService";
 const DEFAULT_COOLDOWN_DURATION_MS = 60 * 1000; // 1 minute in milliseconds
 const INITIAL_ALERTS_STATE: AlertItem[] = [];
 
@@ -82,17 +83,12 @@ export const AlertsProvider = ({ children }: AlertsProviderProps) => {
   }, [alerts]);
 
   const addAlert = (stockSymbol: string, targetPrice: number): void => {
-    console.log("Adding alert for", stockSymbol, "at price", targetPrice);
-
     try {
       const newAlert = createNewAlert(stockSymbol, targetPrice);
-      console.log("Created new alert:", newAlert);
       setAlerts((currentAlerts) => {
         const updatedAlerts = [...currentAlerts, newAlert];
-        console.log("Updated alerts array:", updatedAlerts);
         return updatedAlerts;
       });
-      console.log("Alert added successfully to context");
     } catch (error) {
       console.error("Error in addAlert:", error);
       throw error; // Re-throw so the form can catch it
@@ -100,7 +96,24 @@ export const AlertsProvider = ({ children }: AlertsProviderProps) => {
   };
 
   const removeAlert = (alertId: string): void => {
+    const alertToRemove = alerts.find((alert) => alert.id === alertId);
+
     setAlerts((currentAlerts) => removeAlertById(currentAlerts, alertId));
+
+    // Cancel any pending notifications for this symbol if it was the last alert for that symbol
+    if (alertToRemove) {
+      const remainingAlertsForSymbol = alerts.filter(
+        (alert) => alert.symbol === alertToRemove.symbol && alert.id !== alertId
+      );
+
+      if (remainingAlertsForSymbol.length === 0) {
+        NotificationService.cancelNotificationsForSymbol(
+          alertToRemove.symbol
+        ).catch((error) =>
+          console.error("Failed to cancel notifications:", error)
+        );
+      }
+    }
   };
 
   const updateAlertLastTriggeredTime = (
@@ -113,6 +126,13 @@ export const AlertsProvider = ({ children }: AlertsProviderProps) => {
   };
 
   const clearAllAlerts = (): void => {
+    // Cancel all pending price alert notifications
+    alerts.forEach((alert) => {
+      NotificationService.cancelNotificationsForSymbol(alert.symbol).catch(
+        (error) => console.error("Failed to cancel notifications:", error)
+      );
+    });
+
     setAlerts(INITIAL_ALERTS_STATE);
   };
 
